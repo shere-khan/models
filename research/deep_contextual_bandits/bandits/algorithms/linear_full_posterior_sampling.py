@@ -22,8 +22,8 @@ from __future__ import print_function
 import numpy as np
 from scipy.stats import invgamma
 
-from bandits.core.bandit_algorithm import BanditAlgorithm
-from bandits.core.contextual_dataset import ContextualDataset
+from research.deep_contextual_bandits.bandits.core.bandit_algorithm import BanditAlgorithm
+from research.deep_contextual_bandits.bandits.core.contextual_dataset import ContextualDataset
 
 
 class LinearFullPosteriorSampling(BanditAlgorithm):
@@ -48,11 +48,14 @@ class LinearFullPosteriorSampling(BanditAlgorithm):
     # Gaussian prior for each beta_i
     self._lambda_prior = self.hparams.lambda_prior
 
+    # Create a mean (mu) for each of the arms (num_actions)
     self.mu = [
         np.zeros(self.hparams.context_dim + 1)
         for _ in range(self.hparams.num_actions)
     ]
 
+    # Create a covariance for each of the arms (num_actions)
+    # todo Delta_0 = lambda*I
     self.cov = [(1.0 / self.lambda_prior) * np.eye(self.hparams.context_dim + 1)
                 for _ in range(self.hparams.num_actions)]
 
@@ -128,10 +131,14 @@ class LinearFullPosteriorSampling(BanditAlgorithm):
     self.t += 1
     self.data_h.add(context, action, reward)
 
-    # Update posterior of action with formulas: \beta | x,y ~ N(mu_q, cov_q)
+    ###### Update posterior of action with formulas: \beta | x,y ~ N(mu_q, cov_q) #######
+    # Get all prior plays for this action.
     x, y = self.data_h.get_data(action)
 
-    # The algorithm could be improved with sequential update formulas (cheaper)
+    # TODO The algorithm could be improved with sequential update formulas (cheaper).
+    #  Meaning that, if you look now, all updates for a_post and b_post
+    #  include a_0 and b_0, respectively instead of being recursive.
+    #  Something like a_post = a_(post-1)...
     s = np.dot(x.T, x)
 
     # Some terms are removed as we assume prior mu_0 = 0.

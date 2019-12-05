@@ -32,28 +32,28 @@ import numpy as np
 import os
 import tensorflow as tf
 
-from bandits.algorithms.bootstrapped_bnn_sampling import BootstrappedBNNSampling
-from bandits.core.contextual_bandit import run_contextual_bandit
-from bandits.data.data_sampler import sample_adult_data
-from bandits.data.data_sampler import sample_census_data
-from bandits.data.data_sampler import sample_covertype_data
-from bandits.data.data_sampler import sample_jester_data
-from bandits.data.data_sampler import sample_mushroom_data
-from bandits.data.data_sampler import sample_statlog_data
-from bandits.data.data_sampler import sample_stock_data
-from bandits.algorithms.fixed_policy_sampling import FixedPolicySampling
-from bandits.algorithms.linear_full_posterior_sampling import LinearFullPosteriorSampling
-from bandits.algorithms.neural_linear_sampling import NeuralLinearPosteriorSampling
-from bandits.algorithms.parameter_noise_sampling import ParameterNoiseSampling
-from bandits.algorithms.posterior_bnn_sampling import PosteriorBNNSampling
-from bandits.data.synthetic_data_sampler import sample_linear_data
-from bandits.data.synthetic_data_sampler import sample_sparse_linear_data
-from bandits.data.synthetic_data_sampler import sample_wheel_bandit_data
-from bandits.algorithms.uniform_sampling import UniformSampling
+from research.deep_contextual_bandits.bandits.algorithms.bootstrapped_bnn_sampling import BootstrappedBNNSampling
+from research.deep_contextual_bandits.bandits.core.contextual_bandit import run_contextual_bandit
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_adult_data
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_census_data
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_covertype_data
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_jester_data
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_mushroom_data
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_statlog_data
+from research.deep_contextual_bandits.bandits.data.data_sampler import sample_stock_data
+from research.deep_contextual_bandits.bandits.algorithms.fixed_policy_sampling import FixedPolicySampling
+from research.deep_contextual_bandits.bandits.algorithms.linear_full_posterior_sampling import LinearFullPosteriorSampling
+from research.deep_contextual_bandits.bandits.algorithms.neural_linear_sampling import NeuralLinearPosteriorSampling
+from research.deep_contextual_bandits.bandits.algorithms.parameter_noise_sampling import ParameterNoiseSampling
+from research.deep_contextual_bandits.bandits.algorithms.posterior_bnn_sampling import PosteriorBNNSampling
+from research.deep_contextual_bandits.bandits.data.synthetic_data_sampler import sample_linear_data
+from research.deep_contextual_bandits.bandits.data.synthetic_data_sampler import sample_sparse_linear_data
+from research.deep_contextual_bandits.bandits.data.synthetic_data_sampler import sample_wheel_bandit_data
+from research.deep_contextual_bandits.bandits.algorithms.uniform_sampling import UniformSampling
 
 # Set up your file routes to the data files.
 base_route = os.getcwd()
-data_route = 'contextual_bandits/datasets'
+data_route = 'bandits/datasets'
 
 FLAGS = flags.FLAGS
 FLAGS.set_default('alsologtostderr', True)
